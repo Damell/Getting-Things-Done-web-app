@@ -8,10 +8,11 @@
  * Controller of the gtdAppApp
  */
 angular.module('gtdApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, Task) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.tree = Task.read();
   });
