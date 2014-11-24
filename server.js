@@ -2,7 +2,7 @@ var http = require("http"),
     url = require("url"),
     path = require("path"),
     fs = require("fs")
-    port = process.argv[2] || 8888;
+    port = process.argv[2] || 80;
  
 http.createServer(function(request, response) {
  
@@ -13,9 +13,7 @@ http.createServer(function(request, response) {
     if(!exists) {
       response.writeHead(404, {"Content-Type": "text/plain"});
       response.write("404 Not Found\n");
-      response.end();
-      return;
-    }
+
  
     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
  
