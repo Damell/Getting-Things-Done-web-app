@@ -6,8 +6,59 @@ $web-font: url("//fonts.googleapis.com/css?family=Lato:300,400,700");
 @import "bootswatch-scss/superhero/_variables.scss";
 // endbower
 
-body, .breadcrumb {
-	background: #333;
+html, body, div.uiview, div.wrap {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+body {
+	background: #222;
 	color: white;
 }
+.modal-header, .modal-footer {
+	background: #444;
+}
+.modal-content {
+	background: #333;
+}
 
+.head {
+	height: 45px;
+	background: #444;
+	h3 {
+		margin: 10px 0;
+	}
+	.breadcrumb {
+		background: #444;
+		margin: 5px 0;
+	}
+}
+
+.content {
+	height: 100%;
+	padding: 0;
+	.tree {
+		background: #333;
+		height: 100%;
+		padding: 0;
+		.node {
+			padding: 5px 8px;
+			border: 1px solid #111;
+		}
+	}
+	.detail {
+		padding: 40px;
+	}
+	.control-panel {
+		padding: 0;
+		height: 100%;
+		background: #333;
+	}
+}
+
+.control {
+	border: 1px solid #111;
+	text-align: center;
+	padding: 5px;
+	background: #222;
+}
