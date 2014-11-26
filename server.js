@@ -8,11 +8,16 @@ http.createServer(function(request, response) {
  
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd() + '/dist', uri);
-  
+
+  console.log(uri.split('/')[1]);
+  if (uri.split('/')[1] === 'api') {
+    require('./api')(request, response);
+  } else {
   path.exists(filename, function(exists) {
     if(!exists) {
       response.writeHead(404, {"Content-Type": "text/plain"});
       response.write("404 Not Found\n");
+    }
 
  
     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
@@ -30,6 +35,7 @@ http.createServer(function(request, response) {
       response.end();
     });
   });
+  }
 }).listen(parseInt(port, 10));
  
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
