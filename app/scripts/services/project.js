@@ -9,7 +9,7 @@
  */
 angular.module('gtdApp')
 .service('Project', function Project($resource) {
-	return $resource('api/1.0/projects/:id', {'id': '@id'}, {
+	return $resource('api/v1/projects/:id', {'id': '@id'}, {
 		'read' : {
 			'method' : 'GET',
 			'isArray' : true
