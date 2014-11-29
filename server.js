@@ -9,7 +9,8 @@ http.createServer(function(request, response) {
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd() + '/dist', uri);
 
-  if (uri.split('/')[1] === 'api') {
+  var uriSplit = uri.split('/');
+  if (uriSplit[1] === 'api' && uriSplit[2] === 'v1') {
     require('./api')(request, response);
   } else {
   path.exists(filename, function(exists) {
