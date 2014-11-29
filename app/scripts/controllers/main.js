@@ -48,10 +48,6 @@ angular.module('gtdApp')
 		},
 		setDefaults : function () {
 			this.data.creator = 1;
-			this.data.owner = 1;
-			this.data.state = {
-				id: 12
-			};
 		},
 		node : undefined,
 		type : undefined,
