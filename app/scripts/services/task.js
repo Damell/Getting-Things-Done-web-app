@@ -19,7 +19,7 @@ angular.module('gtdApp')
 			'isArray' : true
 		},
 		'createWithParent' : {
-			'url' : 'api/1.0/projects/:parentId/tasks',
+			'url' : 'api/v1/projects/:parentId/tasks',
 			'params' : { 'parentId' : '@parentId'},
 			'method' : 'POST',
 			'isArray' : true

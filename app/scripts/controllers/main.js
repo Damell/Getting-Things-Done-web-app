@@ -8,21 +8,22 @@
  * Controller of the gtdAppApp
  */
 angular.module('gtdApp')
-  .controller('MainCtrl', function ($scope, Project, Task) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    $scope.tasks = Task.read();
-    $scope.projects = Project.read();
-    $scope.path = [];
-    $scope.select = function (node) {
-    	$scope.selected = node;
+.controller('MainCtrl', function ($scope, Project, Task) {
+	$scope.awesomeThings = [
+		'HTML5 Boilerplate',
+		'AngularJS',
+		'Karma'
+	];
+	$scope.tasks = Task.read();
+	$scope.projects = Project.read();
+	$scope.path = [];
+	$scope.select = function (node) {
+		$scope.selected = node;
 	};
-    $scope.create = {
+	$scope.create = {
 		choose : function () {
 			angular.element('#chooseAction').modal('toggle');
+			this.setDefaults();
 		},
 		send : function () {
 			if (this.node && this.node.type === 'project') {
@@ -45,11 +46,19 @@ angular.module('gtdApp')
 			this.data = {};
 			angular.element('#chooseAction').modal('toggle');
 		},
+		setDefaults : function () {
+			this.data.creator = 1;
+			this.data.owner = 1;
+			this.data.state = {
+				id: 12
+			};
+		},
 		node : undefined,
-		type : undefined
+		type : undefined,
+		data : {}
 	};
-    $scope.update = function (node) {
+	$scope.update = function (node) {
 	};
-    $scope.remove = function (node) {
+	$scope.remove = function (node) {
 	};
-  });
+});
