@@ -5,6 +5,7 @@ $web-font: url("//fonts.googleapis.com/css?family=Lato:300,400,700");
 @import "bootswatch-scss/superhero/_bootswatch.scss";
 @import "bootswatch-scss/superhero/_variables.scss";
 // endbower
+$header-height: 50px;
 
 html, body, div.uiview, div.wrap {
 	height: 100%;
@@ -23,6 +24,10 @@ body {
 }
 
 .head {
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	height: $header-height;
 	background: #444;
 	h3 {
 		margin: 10px 0;
@@ -34,12 +39,17 @@ body {
 }
 
 .content {
-	height: 100%;
+	margin-top: $header-height;
 	padding: 0;
-	.tree {
+	height: 100%;
+	.left-menu {
 		background: #333;
 		height: 100%;
 		padding: 0;
+		.tree {
+			height: 100%;
+			overflow-y: auto;
+		}
 		.node {
 			padding: 5px 8px;
 			border: 1px solid #111;

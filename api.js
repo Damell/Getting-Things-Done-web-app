@@ -14,7 +14,6 @@ module.exports = function (req, res) {
 		if (data) {
 			data = JSON.parse(data);
 		} else {
-			data = {};
 		}
 		resolve();
 	});
@@ -25,22 +24,33 @@ module.exports = function (req, res) {
 			port: 8080,
 			//path: 'https://anypoint.mulesoft.com/apiplatform/proxy/http://mocksvc.mulesoft.com/mocks/4d88e080-1ff0-458b-bf41-001e1838c0f9/mocks/fd43c983-f4f1-4705-9c56-9e5939d14a24' + req.url,
 			path: '/gtd' + req.url,
-			method: req.method
+			method: req.method,
+			headers: {
+			}
 		};
-		data = '';
+		console.log(options);
+		var respData = '';
 		var reqs = http.request(options, function(resp) {
 			resp.on('data', function (chunk) {
-				data += chunk;
+				respData += chunk;
 			});
 			resp.on('end', function () {
-				data = JSON.parse(data);
+				respData = JSON.parse(respData);
+				console.log('Response data:');
+				console.log(respData);
 				res.writeHead(res.statusCode, {'Content-Type': 'application/json' });
-				res.end( JSON.stringify(data) );
+				res.write( JSON.stringify(respData) );
+				res.end();
 			});
 		});
 		reqs.on('error', function(e) {
 			console.log('problem with request' + e.message);
 		});
+		console.log('Data to send:');
+		console.log(data);
+		if (data) {
+			reqs.write(JSON.stringify(data));
+		}
 		reqs.end();
 	};
 };
