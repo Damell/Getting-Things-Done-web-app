@@ -27,6 +27,12 @@ angular.module('gtdApp')
 	$scope.path = [];
 	$scope.select = function (node) {
 		$scope.selected = node;
+		$scope.selectedBackup = angular.copy(node);
+	};
+	$scope.cancelEdit = function () {
+		angular.forEach($scope.selectedBackup, function (value, key) {
+			$scope.selected[key] = value;
+		});
 	};
 	$scope.create = {
 		choose : function () {
