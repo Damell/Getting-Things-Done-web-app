@@ -10,29 +10,12 @@
 angular.module('gtdApp')
 .controller('MainCtrl', function ($scope, Project, Task) {
 	$scope.editable = false;
-	$scope.helper = { 
-		fromToggle: function ($event) {
-			$event.preventDefault();
-			$event.stopPropagation();
-			$scope.helper.fromOpened = true;
-		},
-		toToggle: function ($event) {
-			$event.preventDefault();
-			$event.stopPropagation();
-			$scope.helper.toOpened = true;
-		}
-	};
 	$scope.tasks = Task.read();
 	$scope.projects = Project.read();
 	$scope.path = [];
 	$scope.select = function (node) {
 		$scope.selected = node;
 		$scope.selectedBackup = angular.copy(node);
-	};
-	$scope.cancelEdit = function () {
-		angular.forEach($scope.selectedBackup, function (value, key) {
-			$scope.selected[key] = value;
-		});
 	};
 	$scope.create = {
 		choose : function () {
@@ -61,6 +44,14 @@ angular.module('gtdApp')
 		type : undefined,
 		data : {}
 	};
+	$scope.cancelEdit = function () {
+		angular.forEach($scope.selectedBackup, function (value, key) {
+			$scope.selected[key] = value;
+		});
+	};
+	$scope.toggleEdit = function () {
+		$scope.editable = !$scope.editable;
+	};
 	$scope.update = function (node) {
 		if (node.type === 'task') {
 			Task.update(node, function () {
@@ -71,9 +62,6 @@ angular.module('gtdApp')
 				$scope.projects = Project.read();
 			});
 		}
-	};
-	$scope.toggleEdit = function () {
-		$scope.editable = !$scope.editable;
 	};
 	$scope.remove = function (node) {
 		if (node.type === 'task') {
@@ -102,6 +90,18 @@ angular.module('gtdApp')
 			crumbs.push(node);
 		}
 		return crumbs;
+	};
+	$scope.helper = { 
+		fromToggle: function ($event) {
+			$event.preventDefault();
+			$event.stopPropagation();
+			$scope.helper.fromOpened = true;
+		},
+		toToggle: function ($event) {
+			$event.preventDefault();
+			$event.stopPropagation();
+			$scope.helper.toOpened = true;
+		}
 	};
 	$scope.console = console;
 	$scope.states = {

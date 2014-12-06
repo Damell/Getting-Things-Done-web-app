@@ -134,14 +134,39 @@
 					</div>
 				</div>
 				<div class="form-create" ng-if="create.type">
-					<div class="row">
-						<div class="col-xs-12">
-							<span class="label">Title: </span>
-							<input type="text" ng-model="create.data.title">
+					<div class="value-table row">
+						<div class="col-xs-12 col-sm-6">
+							<div class="attr">Title:</div>
+							<div class="value" contenteditable="true" ng-model="create.data.title"></div>
 						</div>
-						<div class="col-xs-12">
-							<span class="label">Description: </span>
-							<input type="text" ng-model="create.data.description">
+						<div class="col-xs-12 col-sm-6">
+							<div class="attr">Description:</div>
+							<div class="value" contenteditable="true" ng-model="create.data.description"></div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="attr">Owner:</div>
+							<div class="value" contenteditable="true" ng-model="create.data.owner"></div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="attr">Parent project:</div>
+							<select ng-model="create.data.project" ng-options="project.title for project in projects track by project.id">
+							</select>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="attr">State:</div>
+							<select ng-model="create.data.state" ng-options="state.title for state in states[create.type] track by state.id">
+							</select>
+						</div>
+						<div ng-if="create.data.state.id===14" class="col-xs-12 col-sm-12">
+							<div>Calendar:</div>
+
+							<div class="attr">From:</div>
+							<datepicker ng-model="create.data.calendar.from" class="well well-sm"></datepicker>
+							<timepicker ng-model="create.data.calendar.from" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
+
+							<div class="attr">To:</div>
+							<datepicker ng-model="create.data.calendar.to" class="well well-sm"></datepicker>
+							<timepicker ng-model="create.data.calendar.to" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
 						</div>
 					</div>
 				</div>
