@@ -37,6 +37,11 @@ angular
 					}
 				}
 				return config || $q.when(config);
+			},
+			'responseError' : function(response) {
+				window.alert(response.status + ' ' + response.statusText);
+				console.log(response);
+				return $q.reject(response);
 			}
 		};
 	});
