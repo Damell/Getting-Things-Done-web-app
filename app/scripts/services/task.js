@@ -32,9 +32,19 @@ angular.module('gtdApp')
 		},
 		'create' : {
 			'method' : 'POST',
+			'transformResponse' : function (data) {
+				data = JSON.parse(data);
+				data.type = 'task';
+				return data;
+			}
 		},
 		'update' : {
 			'method' : 'PUT',
+			'transformResponse' : function (data) {
+				data = JSON.parse(data);
+				data.type = 'task';
+				return data;
+			}
 		},
 		'remove' : {
 			'method' : 'DELETE',
