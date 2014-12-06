@@ -36,32 +36,19 @@ angular.module('gtdApp')
 	};
 	$scope.create = {
 		choose : function () {
+			this.type = undefined;
 			angular.element('#chooseAction').modal('toggle');
 			this.setDefaults();
 		},
 		send : function () {
-			if (this.node && this.node.type === 'project') {
-				var parentId = {};
-				parentId.parentId = this.node.id;
-				if (this.type === 'project') {
-					Project.createWithParent(parentId, this.data, function (project) {
-						$scope.projects.push(project);
-					});
-				} else {
-					Task.createWithParent(parentId, this.data, function (task) {
-						$scope.tasks.push(task);
-					});
-				}
+			if (this.type === 'project') {
+				Project.create(this.data, function (project) {
+					$scope.projects.push(project);
+				});
 			} else {
-				if (this.type === 'project') {
-					Project.create(this.data, function (project) {
-						$scope.projects.push(project);
-					});
-				} else {
-					Task.create(this.data, function (task) {
-						$scope.tasks.push(task);
-					});
-				}
+				Task.create(this.data, function (task) {
+					$scope.tasks.push(task);
+				});
 			}
 			this.node = undefined;
 			this.type = undefined;
@@ -69,7 +56,6 @@ angular.module('gtdApp')
 			angular.element('#chooseAction').modal('toggle');
 		},
 		setDefaults : function () {
-			this.data.creator = 1;
 		},
 		node : undefined,
 		type : undefined,

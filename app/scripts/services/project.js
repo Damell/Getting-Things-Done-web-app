@@ -24,11 +24,6 @@ angular.module('gtdApp')
 		'create' : {
 			'method' : 'POST',
 		},
-		'createWithParent' : {
-			'url' : 'api/1.0/projects/:parentId/projects',
-			'params' : { 'parentId' : '@parentId'},
-			'method' : 'POST',
-		},
 		'update' : {
 			'method' : 'PUT',
 		},
