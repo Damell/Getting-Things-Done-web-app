@@ -25,29 +25,26 @@ module.exports = function (req, res) {
 			//path: 'https://anypoint.mulesoft.com/apiplatform/proxy/http://mocksvc.mulesoft.com/mocks/4d88e080-1ff0-458b-bf41-001e1838c0f9/mocks/fd43c983-f4f1-4705-9c56-9e5939d14a24' + req.url,
 			path: '/gtd' + req.url,
 			method: req.method,
-			headers: {
+			headers: {'Content-Type': 'application/json' 
 			}
 		};
-		console.log(options);
 		var respData = '';
 		var reqs = http.request(options, function(resp) {
 			resp.on('data', function (chunk) {
 				respData += chunk;
 			});
 			resp.on('end', function () {
-				respData = JSON.parse(respData);
-				console.log('Response data:');
-				console.log(respData);
-				res.writeHead(res.statusCode, {'Content-Type': 'application/json' });
-				res.write( JSON.stringify(respData) );
+				if (respData) {
+					res.writeHead(resp.statusCode, {'Content-Type': 'application/json' });
+					respData = JSON.parse(respData);
+					res.write( JSON.stringify(respData) );
+				}
 				res.end();
 			});
 		});
 		reqs.on('error', function(e) {
 			console.log('problem with request' + e.message);
 		});
-		console.log('Data to send:');
-		console.log(data);
 		if (data) {
 			reqs.write(JSON.stringify(data));
 		}

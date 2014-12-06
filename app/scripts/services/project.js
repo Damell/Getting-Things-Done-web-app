@@ -12,7 +12,14 @@ angular.module('gtdApp')
 	return $resource('api/v1/projects/:id', {'id': '@id'}, {
 		'read' : {
 			'method' : 'GET',
-			'isArray' : true
+			'isArray' : true,
+			'interceptor' : {
+				'response' : function (resp) {
+					for (var i = 0; i < resp.resource.length; i++) {
+						resp.resource[i].type = 'project';
+					}
+				}
+			}
 		},
 		'create' : {
 			'method' : 'POST',

@@ -13,7 +13,7 @@ angular
 	'ngResource',
 	'ui.bootstrap',
 	'ui.router'
-]).config(function($stateProvider, $urlRouterProvider) {
+]).config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise('/');
 	//
 	// Now set up the states
@@ -22,5 +22,22 @@ angular
 		url: '/',
 		templateUrl: 'views/main.html',
 		controller: 'MainCtrl'
+	});
+
+	$httpProvider.interceptors.push(function($q) {
+		return {
+			'request': function(config) {
+				if (config && config.data && config.data.calendar) {
+					config.data = angular.copy(config.data);
+					if (config.data.calendar.from) {
+						config.data.calendar.from = config.data.calendar.from ? config.data.calendar.from.valueOf() : undefined;
+					}
+					if (config.data.calendar.to) {
+						config.data.calendar.to = config.data.calendar.to ? config.data.calendar.to.valueOf() : undefined;
+					}
+				}
+				return config || $q.when(config);
+			}
+		};
 	});
 });

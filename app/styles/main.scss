@@ -16,6 +16,10 @@ body {
 	background: #222;
 	color: white;
 }
+div[contenteditable="true"] {
+	border: 1px dotted white;
+	min-width: 50px;
+}
 .modal-header, .modal-footer {
 	background: #444;
 }
@@ -39,15 +43,15 @@ body {
 }
 
 .content {
-	margin-top: $header-height;
 	padding: 0;
+	padding-top: $header-height;
 	height: 100%;
 	.left-menu {
 		background: #333;
 		height: 100%;
 		padding: 0;
+		overflow-y: auto;
 		.tree {
-			height: 100%;
 			overflow-y: auto;
 		}
 		.node {
@@ -56,7 +60,15 @@ body {
 		}
 	}
 	.detail {
+		overflow-y: auto;
+		height: 100%;
 		padding: 40px;
+		.value-table > div {
+			min-height: 25px;
+		}
+		.attr, .value {
+			display: inline-block;
+		}
 	}
 	.control-panel {
 		padding: 0;
