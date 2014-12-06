@@ -44,15 +44,23 @@ angular.module('gtdApp')
 				var parentId = {};
 				parentId.parentId = this.node.id;
 				if (this.type === 'project') {
-					Project.createWithParent(parentId, this.data);
+					Project.createWithParent(parentId, this.data, function (project) {
+						$scope.projects.push(project);
+					});
 				} else {
-					Task.createWithParent(parentId, this.data);
+					Task.createWithParent(parentId, this.data, function (task) {
+						$scope.tasks.push(task);
+					});
 				}
 			} else {
 				if (this.type === 'project') {
-					Project.create(this.data);
+					Project.create(this.data, function (project) {
+						$scope.projects.push(project);
+					});
 				} else {
-					Task.create(this.data);
+					Task.create(this.data, function (task) {
+						$scope.tasks.push(task);
+					});
 				}
 			}
 			this.node = undefined;

@@ -23,21 +23,17 @@ angular.module('gtdApp')
 		},
 		'create' : {
 			'method' : 'POST',
-			'isArray' : true
 		},
 		'createWithParent' : {
 			'url' : 'api/1.0/projects/:parentId/projects',
 			'params' : { 'parentId' : '@parentId'},
 			'method' : 'POST',
-			'isArray' : true
 		},
 		'update' : {
 			'method' : 'PUT',
-			'isArray' : true
 		},
 		'remove' : {
 			'method' : 'DELETE',
-			'isArray' : true
 		}
 	});
   });
