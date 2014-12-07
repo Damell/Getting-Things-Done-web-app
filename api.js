@@ -34,8 +34,8 @@ module.exports = function (req, res) {
 				respData += chunk;
 			});
 			resp.on('end', function () {
+				res.writeHead(resp.statusCode, {'Content-Type': 'application/json' });
 				if (respData) {
-					res.writeHead(resp.statusCode, {'Content-Type': 'application/json' });
 					respData = JSON.parse(respData);
 					res.write( JSON.stringify(respData) );
 				}
