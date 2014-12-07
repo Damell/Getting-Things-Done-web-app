@@ -56,10 +56,12 @@ angular.module('gtdApp')
 		if (node.type === 'task') {
 			Task.update(node, function () {
 				$scope.tasks = Task.read();
+				$scope.toggleEdit();
 			});
 		} else {
 			Project.update(node, function () {
 				$scope.projects = Project.read();
+				$scope.toggleEdit();
 			});
 		}
 	};
