@@ -59,4 +59,24 @@ angular
 			return nodes;
 		}
 	};
+}).filter('parentFilter', function () {
+	return function (nodes, parentId) {
+		var arr = [];
+		angular.forEach(nodes, function (node) {
+			if (node.project && node.project.id === parentId) {
+				arr.push(node);
+			} else if (!parentId && !node.project) {
+				arr.push(node);
+			}
+		});
+		return arr;
+	};
+}).filter('getIndent', function () {
+	return function (nodes) {
+		var out = '';
+		angular.forEach(nodes, function (node) {
+			out += '>';
+		});
+		return out.slice(0, -1);
+	};
 });

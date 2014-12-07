@@ -15,7 +15,7 @@
 	</div>
 	<div class="row content">
 		<div class="col-xs-2 left-menu">
-			<div class="tree" ng-include="'views/treeview.html'">
+			<div class="tree" ng-include="'views/treeview.html'" onload="parentId=undefined">
 			</div>
 			<div class="control" ng-click="create.choose()">
 				<span class="fa fa-2x fa-plus"></span>

@@ -8,7 +8,7 @@
  * Controller of the gtdAppApp
  */
 angular.module('gtdApp')
-.controller('MainCtrl', function ($scope, Project, Task) {
+.controller('MainCtrl', function ($rootScope, $scope, Project, Task) {
 	$scope.editable = false;
 	$scope.tasks = Task.read();
 	$scope.projects = Project.read();
@@ -83,10 +83,19 @@ angular.module('gtdApp')
 		}
 	};
 
+	$scope.findProjectById = function (id) {
+		var project;
+		angular.forEach($scope.projects, function (node) {
+			if (node.id === id) {
+				project = node;
+			}
+		});
+		return project;
+	};
 	$scope.getBreadcrumb = function (node) {
 		var crumbs = [];
 		if (node && node.project) {
-			crumbs = crumbs.concat($scope.getBreadcrumb(node.project));
+			crumbs = $scope.getBreadcrumb( $scope.findProjectById(node.project.id) );
 		}
 		if (node) {
 			crumbs.push(node);

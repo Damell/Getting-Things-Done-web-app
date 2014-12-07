@@ -1,12 +1,15 @@
-<div class="control" ng-click="doneFilter=!doneFilter">
+<div class="control" ng-click="doneFilter=!doneFilter" ng-if="!parentId">
 	<span class="fa fa-square-o" ng-if="!doneFilter"></span>
 	<span class="fa fa-check-square-o" ng-if="doneFilter"></span>
-	Show only finished
+	Show only active
 </div>
-<div ng-repeat="node in projects | doneFilter:doneFilter" ng-click="select(node)" class="node">
+{{ parent }}
+<div ng-repeat-start="node in projects | parentFilter:parentId | doneFilter:doneFilter" ng-click="select(node)" class="node" style="padding-left:{{getBreadcrumb(node).length*10}}px">
 	<span class="fa fa-folder"></span>
 	{{ node.title }}
 </div>
-<div ng-repeat="node in tasks | doneFilter:doneFilter" ng-click="select(node)" class="node">
+<div ng-repeat-end class="tree" ng-include="'views/treeview.html'" onload="parentId=node.id" class="indent">
+</div>
+<div ng-repeat="node in tasks | parentFilter:parentId | doneFilter:doneFilter" ng-click="select(node)" class="node" style="padding-left:{{getBreadcrumb(node).length*10}}px">
 	{{ node.title }}
 </div>
