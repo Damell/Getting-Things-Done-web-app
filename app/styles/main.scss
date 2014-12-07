@@ -19,6 +19,7 @@ body {
 div[contenteditable="true"] {
 	border: 1px dotted white;
 	min-width: 50px;
+	min-height: 1.6em;
 }
 .modal-header, .modal-footer {
 	background: #444;
@@ -48,6 +49,9 @@ input.form-control {
 	.breadcrumb {
 		background: #444;
 		margin: 5px 0;
+		li {
+			margin-right: 5px;
+		}
 	}
 }
 
