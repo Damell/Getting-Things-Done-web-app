@@ -45,4 +45,18 @@ angular
 			}
 		};
 	});
+}).filter('doneFilter', function () {
+	return function (nodes, toggle) {
+		if (toggle) {
+			var arr = [];
+			angular.forEach(nodes, function (node) {
+				if (node.state && node.state.id !== 11 && node.state.id !== 15) {
+					arr.push(node);
+				}
+			});
+			return arr;
+		} else {
+			return nodes;
+		}
+	};
 });

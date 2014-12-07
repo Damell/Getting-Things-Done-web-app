@@ -101,6 +101,9 @@ angular.module('gtdApp')
 			$event.preventDefault();
 			$event.stopPropagation();
 			$scope.helper.toOpened = true;
+		},
+		doneFilterToggle: function () {
+			$scope.helper.doneFilter = !$scope.helper.doneFilter;
 		}
 	};
 	$scope.console = console;

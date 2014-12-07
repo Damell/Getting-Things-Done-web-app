@@ -29,6 +29,12 @@ div[contenteditable="true"] {
 select {
 	color: black;
 }
+input.form-control {
+	height: 28px;
+}
+.input-group .btn {
+	padding: 3px 12px;
+}
 
 .head {
 	position: absolute;

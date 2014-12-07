@@ -1,7 +1,12 @@
+<div class="control" ng-click="doneFilter=!doneFilter">
+	<span class="fa fa-square-o" ng-if="!doneFilter"></span>
+	<span class="fa fa-check-square-o" ng-if="doneFilter"></span>
+	Show only finished
+</div>
 <div ng-repeat="node in projects" ng-click="select(node)" class="node">
 	<span class="fa fa-folder"></span>
 	{{ node.title }}
 </div>
-<div ng-repeat="node in tasks" ng-click="select(node)" class="node">
+<div ng-repeat="node in tasks | doneFilter:doneFilter" ng-click="select(node)" class="node">
 	{{ node.title }}
 </div>
