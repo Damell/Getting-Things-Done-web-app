@@ -9,6 +9,7 @@
  */
 angular.module('gtdApp')
 .controller('MainCtrl', function ($rootScope, $scope, Project, Task) {
+	$rootScope.doneFilter = false;
 	$scope.editable = false;
 	$scope.tasks = Task.read();
 	$scope.projects = Project.read();
@@ -114,7 +115,7 @@ angular.module('gtdApp')
 			$scope.helper.toOpened = true;
 		},
 		doneFilterToggle: function () {
-			$scope.helper.doneFilter = !$scope.helper.doneFilter;
+			$rootScope.doneFilter = !$rootScope.doneFilter;
 		}
 	};
 	$scope.console = console;
