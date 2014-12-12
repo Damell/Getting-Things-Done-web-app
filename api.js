@@ -25,8 +25,9 @@ module.exports = function (req, res) {
 			//path: 'https://anypoint.mulesoft.com/apiplatform/proxy/http://mocksvc.mulesoft.com/mocks/4d88e080-1ff0-458b-bf41-001e1838c0f9/mocks/fd43c983-f4f1-4705-9c56-9e5939d14a24' + req.url,
 			path: '/gtd' + req.url,
 			method: req.method,
-			headers: {'Content-Type': 'application/json' 
-			}
+			headers: req.headers
+			//headers: {'Content-Type': 'application/json' 
+			//}
 		};
 		var respData = '';
 		var reqs = http.request(options, function(resp) {
