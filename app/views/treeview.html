@@ -1,12 +1,16 @@
 <div ng-repeat-start="node in projects | parentFilter:parentId | doneFilter:doneFilter" ng-dblclick="node.visible=!node.visible" ng-click="select(node)" class="node" style="padding-left:{{getBreadcrumb(node).length*10}}px">
-	<span class="fa fa-folder-open" ng-if="node.state.id!==11"></span>
-	<span class="fa fa-folder" ng-if="node.state.id===11"></span>
+	<span ng-class="'fa fa-folder'+((node.state.id===11)?'':'-open')+((projects.concat(tasks) | parentFilter:node.id).length?'':'-o')"></span>
+	<!--
+	<span class="fa fa-folder-open" ng-show="node.state.id!==11"></span>
+	<span class="fa fa-folder" ng-show="node.state.id===11"></span>
+	<span class="fa fa-folder-o" ng-show="projects | parentFilter:node.id"></span>
+	-->
 	{{ node.title }}
 </div>
 <div ng-if="node.visible" ng-repeat-end class="tree" ng-include="'views/treeview.html'" onload="parentId=node.id" class="indent">
 </div>
 <div ng-repeat="node in tasks | parentFilter:parentId | doneFilter:doneFilter" ng-click="select(node)" class="node" style="padding-left:{{getBreadcrumb(node).length*10}}px">
-	<span class="fa fa-square-o" ng-if="node.state.id!==15"></span>
-	<span class="fa fa-check-square-o" ng-if="node.state.id===15"></span>
+	<span class="fa fa-square-o" ng-show="node.state.id!==15"></span>
+	<span class="fa fa-check-square-o" ng-show="node.state.id===15"></span>
 	{{ node.title }}
 </div>
