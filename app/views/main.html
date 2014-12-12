@@ -37,7 +37,7 @@
 			<div class="row" ng-if="selected">
 				<div class="col-xs-12">
 					<button type="button" ng-if="editable" class="btn pull-right btn-danger" ng-click="cancelEdit();toggleEdit()"><span class="fa fa-cancel">Cancel</span></button>
-					<button type="button" ng-if="editable" class="btn pull-right btn-success" ng-click="update(selected)"><span class="fa fa-save"> Save</span></button>
+					<button type="button" ng-if="editable" class="btn pull-right btn-success" ng-click="update(selected);toggleEdit()"><span class="fa fa-save"> Save</span></button>
 					<h3>
 						<div class="value" contenteditable="{{editable?'true':'false'}}" ng-model="selected.title"></div>
 					</h3>
@@ -106,10 +106,9 @@
 				<div class="control" ng-click="toggleEdit();">
 					<span class="fa fa-2x fa-edit"></span>
 				</div>
-				<!--<div class="control" ng-click="complete(selected)">
+				<div class="control" ng-click="selected.state=states[selected.type].slice(-1)[0];update(selected)">
 					<span class="fa fa-2x fa-check"></span>
 				</div>
-				-->
 				<div class="control" ng-click="remove(selected)">
 					<span class="fa fa-2x fa-trash"></span>
 				</div>
