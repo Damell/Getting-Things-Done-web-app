@@ -12,7 +12,7 @@ describe('Service: Task', function () {
   }));
 
   it('should do something', function () {
-    expect(!!Task).toBe(true);
+    expect(!!Task).to.equal(true);
   });
 
 });

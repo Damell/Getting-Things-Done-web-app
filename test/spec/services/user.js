@@ -12,7 +12,7 @@ describe('Service: User', function () {
   }));
 
   it('should do something', function () {
-    expect(!!User).toBe(true);
+    expect(!!User).to.equal(true);
   });
 
 });

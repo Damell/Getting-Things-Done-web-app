@@ -12,9 +12,12 @@ describe('Directive: directives', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<directives></directives>');
+  it('should test contenteditable model <-> view binding', inject(function ($compile) {
+    element = angular.element('<div contenteditable="true" ng-model="content">content</div>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the directives directive');
+    expect(element.text()).to.equal('content');
+    scope.content = 'change';
+    scope.$digest();
+    expect(element.text()).to.equal('change');
   }));
 });

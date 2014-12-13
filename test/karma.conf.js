@@ -14,17 +14,19 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai', 'chai-as-promised'],
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
-    ],
+		'bower_components/angular/angular.js',
+		'bower_components/angular-mocks/angular-mocks.js',
+		'bower_components/angular-resource/angular-resource.js',
+		'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+		'bower_components/angular-ui-router/release/angular-ui-router.js',
+		'app/scripts/**/*.js',
+		'test/mock/**/*.js',
+		'test/spec/**/*.js'
+	],
 
     // list of files / patterns to exclude
     exclude: [],
@@ -47,7 +49,9 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-mocha',
+      'karma-chai',
+      'karma-chai-plugins'
     ],
 
     // Continuous Integration mode

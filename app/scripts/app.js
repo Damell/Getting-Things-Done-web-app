@@ -74,7 +74,7 @@ angular
 }).filter('getIndent', function () {
 	return function (nodes) {
 		var out = '';
-		angular.forEach(nodes, function (node) {
+		angular.forEach(nodes, function () {
 			out += '>';
 		});
 		return out.slice(0, -1);
