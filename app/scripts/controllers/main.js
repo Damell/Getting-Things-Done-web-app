@@ -8,12 +8,23 @@
  * Controller of the gtdAppApp
  */
 angular.module('gtdApp')
-.controller('MainCtrl', function ($rootScope, $scope, Project, Task) {
+.controller('MainCtrl', function ($rootScope, $scope, Project, Task, Context) {
 	$rootScope.doneFilter = false;
 	$scope.editable = false;
 	$scope.tasks = Task.read();
 	$scope.projects = Project.read();
 	$scope.path = [];
+	$scope.console = console;
+	$scope.contexts = Context.read();
+	$scope.states = {
+		'task' : [{'id': 12, 'code': 'V', 'title': 'Vytvořený', 'description': 'Nově vytvořený úkol, kterému bude přidělen nový stav na základě dalšího zpracování'},
+			{'id': 13, 'code': 'A', 'title': 'Aktivní', 'description': 'Aktuálně zpracovávaný úkol bez časového rámce'},
+			{'id': 14, 'code': 'K', 'title': 'V kalendáři', 'description': 'Aktuálně zpracovávaný úkol s časovým rámcem'},
+			{'id': 15, 'code': 'H', 'title': 'Hotový', 'description': 'Kompletně zpracovaný úkol'}],
+		'project': [{'id': 10, 'code': 'A', 'title': 'Aktivní', 'description': 'Projekt je aktivní'},
+			{'id': 11, 'code': 'D', 'title': 'Dokončený', 'description': 'Projek nemůže být dokončen pokud je pod ním neukončený projekt nebo úkol.'}]
+	};
+
 	$scope.select = function (node) {
 		$scope.selected = node;
 		$scope.selectedBackup = angular.copy(node);
@@ -81,7 +92,6 @@ angular.module('gtdApp')
 			});
 		}
 	};
-
 	$scope.findProjectById = function (id) {
 		var project;
 		angular.forEach($scope.projects, function (node) {
@@ -116,13 +126,5 @@ angular.module('gtdApp')
 			$rootScope.doneFilter = !$rootScope.doneFilter;
 		}
 	};
-	$scope.console = console;
-	$scope.states = {
-		'task' : [{'id': 12, 'code': 'V', 'title': 'Vytvořený', 'description': 'Nově vytvořený úkol, kterému bude přidělen nový stav na základě dalšího zpracování'},
-			{'id': 13, 'code': 'A', 'title': 'Aktivní', 'description': 'Aktuálně zpracovávaný úkol bez časového rámce'},
-			{'id': 14, 'code': 'K', 'title': 'V kalendáři', 'description': 'Aktuálně zpracovávaný úkol s časovým rámcem'},
-			{'id': 15, 'code': 'H', 'title': 'Hotový', 'description': 'Kompletně zpracovaný úkol'}],
-		'project': [{'id': 10, 'code': 'A', 'title': 'Aktivní', 'description': 'Projekt je aktivní'},
-			{'id': 11, 'code': 'D', 'title': 'Dokončený', 'description': 'Projek nemůže být dokončen pokud je pod ním neukončený projekt nebo úkol.'}]
-	};
 });
+

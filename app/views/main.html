@@ -34,6 +34,17 @@
 					Oproti GTD je přidána kooperativní složka. Uživatelům je tak umožněno si za určitých podmínek předávat úkoly a projekty.
 				</div>
 			</div>
+			<div class="row context-control" ng-if="selected">
+				<div class="control" ng-click="toggleEdit();">
+					<span class="fa fa-2x fa-edit"></span>
+				</div>
+				<div class="control" ng-click="selected.state=states[selected.type].slice(-1)[0];update(selected)">
+					<span class="fa fa-2x fa-check"></span>
+				</div>
+				<div class="control" ng-click="remove(selected)">
+					<span class="fa fa-2x fa-trash"></span>
+				</div>
+			</div>
 			<div class="row" ng-if="selected">
 				<div class="col-xs-12">
 					<button type="button" ng-if="editable" class="btn pull-right btn-danger" ng-click="cancelEdit();toggleEdit()"><span class="fa fa-cancel">Cancel</span></button>
@@ -66,12 +77,6 @@
 					<select ng-if="editable" ng-model="selected.project" ng-options="project.title for project in projects track by project.id">
 					</select>
 				</div>
-				<!--
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">Context:</div>
-					<div class="value" contenteditable="{{editable?'true':'false'}}" ng-model="selected.context.title"></div>
-				</div>
-				-->
 				<div class="col-xs-12 col-sm-6">
 					<div class="attr">State:</div>
 					<div class="value" ng-if="!editable">{{ selected.state.title }}</div>
@@ -99,18 +104,18 @@
 					</span>
 					<timepicker ng-model="selected.calendar.to" ng-change="changed()" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
 				</div>
+				<div class="col-xs-12 col-sm-6" ng-show="selected.context || editable">
+					<div class="attr">Context:</div>
+					<div class="value" ng-if="!editable">{{ selected.context.title }}</div>
+					<select ng-if="editable" ng-model="selected.context" ng-options="context.title for context in contexts track by context.id">
+					</select>
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-1 control-panel">
 			<div ng-if="selected">
-				<div class="control" ng-click="toggleEdit();">
-					<span class="fa fa-2x fa-edit"></span>
-				</div>
-				<div class="control" ng-click="selected.state=states[selected.type].slice(-1)[0];update(selected)">
-					<span class="fa fa-2x fa-check"></span>
-				</div>
-				<div class="control" ng-click="remove(selected)">
-					<span class="fa fa-2x fa-trash"></span>
+				<div class="control">
+					<span class="fa fa-2x fa-tags"></span>
 				</div>
 			</div>
 		</div>
