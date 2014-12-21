@@ -22,18 +22,36 @@ angular
 		url: '/',
 		templateUrl: 'views/main.html',
 		controller: 'MainCtrl'
+	})
+	.state('main.dashboard', {
+		templateUrl: 'views/dashboard.html'
+	})
+	.state('main.activityDetails', {
+		templateUrl: 'views/activitydetails.html',
+		controller: 'ActivityDetailsCtrl'
+	})
+	.state('main.contextAdmin', {
+		templateUrl: 'views/contextadmin.html',
+		controller: 'ContextAdminCtrl'
+	})
+	.state('main.calendar', {
+		templateUrl: 'views/calendar.html',
+		controller: 'CalendarCtrl'
 	});
 
 	$httpProvider.interceptors.push(function($q) {
 		return {
 			'request': function(config) {
-				if (config && config.data && config.data.calendar) {
-					config.data = angular.copy(config.data);
-					if (config.data.calendar.from) {
-						config.data.calendar.from = config.data.calendar.from ? config.data.calendar.from.valueOf() : undefined;
-					}
-					if (config.data.calendar.to) {
-						config.data.calendar.to = config.data.calendar.to ? config.data.calendar.to.valueOf() : undefined;
+				if (config) {
+					config.headers['token'] = 'XXXMichalXXX';
+					if (config.data && config.data.calendar) {
+						config.data = angular.copy(config.data);
+						if (config.data.calendar.from) {
+							config.data.calendar.from = config.data.calendar.from ? config.data.calendar.from.valueOf() : undefined;
+						}
+						if (config.data.calendar.to) {
+							config.data.calendar.to = config.data.calendar.to ? config.data.calendar.to.valueOf() : undefined;
+						}
 					}
 				}
 				return config || $q.when(config);

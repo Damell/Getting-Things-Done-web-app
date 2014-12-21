@@ -21,6 +21,12 @@ div[contenteditable="true"] {
 	min-width: 50px;
 	min-height: 1.6em;
 }
+.no-margin {
+	margin: 0;
+}
+.table {
+	font-size: inherit;
+}
 .modal-header, .modal-footer {
 	background: #444;
 }
@@ -97,11 +103,13 @@ input.form-control {
 	}
 }
 
-.control {
+.control, .control:hover, .control:visited, .control:active {
 	border: 1px solid #111;
 	text-align: center;
 	padding: 5px;
 	background: #222;
+	display: block;
+	color: white;
 	cursor: pointer;
 }
 

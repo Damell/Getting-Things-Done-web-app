@@ -8,7 +8,7 @@
  * Controller of the gtdAppApp
  */
 angular.module('gtdApp')
-.controller('MainCtrl', function ($rootScope, $scope, Project, Task, Context) {
+.controller('MainCtrl', function ($rootScope, $scope, $state, Project, Task, Context) {
 	$rootScope.doneFilter = false;
 	$scope.editable = false;
 	$scope.tasks = Task.read();
@@ -28,6 +28,7 @@ angular.module('gtdApp')
 	$scope.select = function (node) {
 		$scope.selected = node;
 		$scope.selectedBackup = angular.copy(node);
+		$state.go('main.activityDetails');
 	};
 	$scope.create = {
 		choose : function () {
@@ -55,42 +56,6 @@ angular.module('gtdApp')
 		node : undefined,
 		type : undefined,
 		data : {}
-	};
-	$scope.cancelEdit = function () {
-		angular.forEach($scope.selectedBackup, function (value, key) {
-			$scope.selected[key] = value;
-		});
-	};
-	$scope.toggleEdit = function () {
-		$scope.editable = !$scope.editable;
-	};
-	$scope.update = function (node) {
-		if (node.type === 'task') {
-			Task.update(node, function () {
-				$scope.tasks = Task.read();
-			});
-		} else {
-			Project.update(node, function () {
-				$scope.projects = Project.read();
-			});
-		}
-	};
-	$scope.remove = function (node) {
-		if (node.type === 'task') {
-			Task.remove({id: node.id}, function () {
-				$scope.tasks = Task.read();
-				if (node.id === $scope.selected.id) {
-					$scope.selected = undefined;
-				}
-			});
-		} else {
-			Project.remove({id: node.id}, function () {
-				$scope.projects = Project.read();
-				if (node.id === $scope.selected.id) {
-					$scope.selected = undefined;
-				}
-			});
-		}
 	};
 	$scope.findProjectById = function (id) {
 		var project;

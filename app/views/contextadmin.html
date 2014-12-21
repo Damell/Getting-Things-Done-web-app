@@ -1,0 +1,42 @@
+<div>
+	<div class="input-group col-xs-3">
+		<input type="text" class="form-control" ng-model="newTitle">
+		<span class="input-group-btn">
+			<button class="btn btn-default" ng-click="create(newTitle)">Add Context</button>
+		</span>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<td>
+					Title
+				</td>
+				<td>
+					ID
+				</td>
+				<td>
+					Edit
+				</td>
+				<td>
+					Delete
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="context in contexts track by context.id">
+			<td>
+				<div class="value" contenteditable="true" ng-model="context.title"></div>
+			</td>
+			<td>
+				{{ context.id }}
+			</td>
+			<td ng-click="context.$update()">
+				<i class="fa fa-edit"></i>
+			</td>
+			<td>
+				<i class="fa fa-trash"></i>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>

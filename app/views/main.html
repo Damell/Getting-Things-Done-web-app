@@ -14,7 +14,20 @@
 		</div>
 	</div>
 	<div class="row content">
-		<div class="col-xs-2 left-menu">
+		<div class="col-xs-3 left-menu">
+			<div class="row no-margin">
+				<!--
+				<a ui-sref="main.activityDetails" class="control col-xs-4">
+					<span class="fa fa-2x fa-sitemap"></span>
+				</a>
+				-->
+				<a ui-sref="main.contextAdmin" class="control col-xs-6">
+					<span class="fa fa-2x fa-tags"></span>
+				</a>
+				<a ui-sref="main.calendar" class="control col-xs-6">
+					<span class="fa fa-2x fa-calendar"></span>
+				</a>
+			</div>
 			<div class="control" ng-click="helper.doneFilterToggle()">
 				<span class="fa fa-square-o" ng-if="!doneFilter"></span>
 				<span class="fa fa-check-square-o" ng-if="doneFilter"></span>
@@ -27,97 +40,7 @@
 			</div>
 		</div>
 		<div class="col-xs-9 detail">
-			<div class="row" ng-if="!selected">
-				<div class="col-xs-12">
-					Informační systém pro základní skupinové plánování inspirovaný metodikou GTD.
-					Uživatel zpracuje své činnosti do podoby úkolů a projektů. Které mu systém poté umožňuje spravovat.
-					Oproti GTD je přidána kooperativní složka. Uživatelům je tak umožněno si za určitých podmínek předávat úkoly a projekty.
-				</div>
-			</div>
-			<div class="row context-control" ng-if="selected">
-				<div class="control" ng-click="toggleEdit();">
-					<span class="fa fa-2x fa-edit"></span>
-				</div>
-				<div class="control" ng-click="selected.state=states[selected.type].slice(-1)[0];update(selected)">
-					<span class="fa fa-2x fa-check"></span>
-				</div>
-				<div class="control" ng-click="remove(selected)">
-					<span class="fa fa-2x fa-trash"></span>
-				</div>
-			</div>
-			<div class="row" ng-if="selected">
-				<div class="col-xs-12">
-					<button type="button" ng-if="editable" class="btn pull-right btn-danger" ng-click="cancelEdit();toggleEdit()"><span class="fa fa-cancel">Cancel</span></button>
-					<button type="button" ng-if="editable" class="btn pull-right btn-success" ng-click="update(selected);toggleEdit()"><span class="fa fa-save"> Save</span></button>
-					<h3>
-						<div class="value" contenteditable="{{editable?'true':'false'}}" ng-model="selected.title"></div>
-					</h3>
-				</div>
-			</div>
-			<div class="value-table row" ng-if="selected">
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">Description:</div>
-					<div class="value" contenteditable="{{editable?'true':'false'}}" ng-model="selected.description"></div>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">Creator:</div>
-					<div class="value">{{ selected.creator }}</div>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">Owner:</div>
-					<div class="value" contenteditable="{{editable?'true':'false'}}" ng-model="selected.owner"></div>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">ID:</div>
-					<div class="value">{{ selected.id }}</div>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">Parent project:</div>
-					<div class="value" ng-if="!editable">{{ selected.project.title || 'root' }}</div>
-					<select ng-if="editable" ng-model="selected.project" ng-options="project.title for project in projects track by project.id">
-					</select>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<div class="attr">State:</div>
-					<div class="value" ng-if="!editable">{{ selected.state.title }}</div>
-					<select ng-if="editable" ng-model="selected.state" ng-options="state.title for state in states[selected.type] track by state.id">
-					</select>
-				</div>
-				<div ng-if="selected.state.id===14" class="col-xs-12 col-sm-6">
-					<div>Calendar:</div>
-
-					<div class="attr">From:</div>
-					<span class="input-group">
-						<input type="text" class="form-control" ng-readonly="!editable" datepicker-popup="dd.MM.yyyy" ng-model="selected.calendar.from" is-open="helper.fromOpened" close-text="Close" />
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="editable && helper.fromToggle($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
-					</span>
-					<timepicker ng-model="selected.calendar.from" ng-change="changed()" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
-
-					<div class="attr">To:</div>
-					<span class="input-group">
-						<input type="text" class="form-control" ng-readonly="!editable" datepicker-popup="dd.MM.yyyy" ng-model="selected.calendar.to" is-open="helper.toOpened" close-text="Close" />
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="editable && helper.toToggle($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
-					</span>
-					<timepicker ng-model="selected.calendar.to" ng-change="changed()" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
-				</div>
-				<div class="col-xs-12 col-sm-6" ng-show="selected.context || editable">
-					<div class="attr">Context:</div>
-					<div class="value" ng-if="!editable">{{ selected.context.title }}</div>
-					<select ng-if="editable" ng-model="selected.context" ng-options="context.title for context in contexts track by context.id">
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-1 control-panel">
-			<div ng-if="selected">
-				<div class="control">
-					<span class="fa fa-2x fa-tags"></span>
-				</div>
-			</div>
+			<div ui-view></div>
 		</div>
 	</div>
 </div>
@@ -127,65 +50,65 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form name="form">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Choose Action</h4>
-			</div>
-			<div class="modal-body">
-				<div class="chooser" ng-if="!create.type">
-					<div class="option" ng-click="create.type='project'">
-						<span class="fa fa-2x fa-folder"></span>
-						Create project
-					</div>
-					<div class="option" ng-click="create.type='task'">
-						<span class="fa fa-2x fa-check"></span>
-						Create task
-					</div>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">Choose Action</h4>
 				</div>
-				<div class="form-create" ng-if="create.type">
-					<div class="value-table row">
-						<div class="col-xs-12 col-sm-6">
-							<div class="attr">Title:</div>
-							<div class="value" contenteditable="true" ng-model="create.data.title"></div>
+				<div class="modal-body">
+					<div class="chooser" ng-if="!create.type">
+						<div class="option" ng-click="create.type='project'">
+							<span class="fa fa-2x fa-folder"></span>
+							Create project
 						</div>
-						<div class="col-xs-12 col-sm-6">
-							<div class="attr">Description:</div>
-							<div class="value" contenteditable="true" ng-model="create.data.description"></div>
+						<div class="option" ng-click="create.type='task'">
+							<span class="fa fa-2x fa-check"></span>
+							Create task
 						</div>
-<!--
+					</div>
+					<div class="form-create" ng-if="create.type">
+						<div class="value-table row">
+							<div class="col-xs-12 col-sm-6">
+								<div class="attr">Title:</div>
+								<div class="value" contenteditable="true" ng-model="create.data.title"></div>
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<div class="attr">Description:</div>
+								<div class="value" contenteditable="true" ng-model="create.data.description"></div>
+							</div>
+							<!--
 						<div class="col-xs-12 col-sm-6">
 							<div class="attr">Owner:</div>
 							<div class="value" contenteditable="true" ng-model="create.data.owner"></div>
 						</div>
 -->
-						<div class="col-xs-12 col-sm-6">
-							<div class="attr">Parent project:</div>
-							<select ng-model="create.data.project" ng-options="project.title for project in projects track by project.id">
-							</select>
-						</div>
-						<div class="col-xs-12 col-sm-6">
-							<div class="attr">State:</div>
-							<select ng-model="create.data.state" ng-options="state.title for state in states[create.type] track by state.id">
-							</select>
-						</div>
-						<div ng-if="create.data.state.id===14" class="col-xs-12 col-sm-12">
-							<div>Calendar:</div>
+							<div class="col-xs-12 col-sm-6">
+								<div class="attr">Parent project:</div>
+								<select ng-model="create.data.project" ng-options="project.title for project in projects track by project.id">
+								</select>
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<div class="attr">State:</div>
+								<select ng-model="create.data.state" ng-options="state.title for state in states[create.type] track by state.id">
+								</select>
+							</div>
+							<div ng-if="create.data.state.id===14" class="col-xs-12 col-sm-12">
+								<div>Calendar:</div>
 
-							<div class="attr">From:</div>
-							<datepicker ng-model="create.data.calendar.from" class="well well-sm"></datepicker>
-							<timepicker ng-model="create.data.calendar.from" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
+								<div class="attr">From:</div>
+								<datepicker ng-model="create.data.calendar.from" class="well well-sm"></datepicker>
+								<timepicker ng-model="create.data.calendar.from" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
 
-							<div class="attr">To:</div>
-							<datepicker ng-model="create.data.calendar.to" class="well well-sm"></datepicker>
-							<timepicker ng-model="create.data.calendar.to" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
+								<div class="attr">To:</div>
+								<datepicker ng-model="create.data.calendar.to" class="well well-sm"></datepicker>
+								<timepicker ng-model="create.data.calendar.to" show-meridian="false" readonly-input="editable?'true':'false'"></timepicker>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-success" ng-click="create.send()" ng-if="create.type">Create</button>
-			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success" ng-click="create.send()" ng-if="create.type">Create</button>
+				</div>
 			</form>
 		</div>
 	</div>

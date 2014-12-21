@@ -36,7 +36,7 @@ module.exports = function (req, res) {
 			});
 			resp.on('end', function () {
 				res.writeHead(resp.statusCode, {'Content-Type': 'application/json' });
-				if (respData) {
+				if ((resp.statusCode === 200 || resp.statusCode === 201) && respData) {
 					respData = JSON.parse(respData);
 					res.write( JSON.stringify(respData) );
 				}
