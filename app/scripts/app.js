@@ -18,13 +18,20 @@ angular
 	//
 	// Now set up the states
 	$stateProvider
+	.state('login', {
+		templateUrl: 'views/login.html',
+		controller: 'LoginCtrl',
+		url: '/login'
+	})
 	.state('main', {
 		url: '/',
 		templateUrl: 'views/main.html',
-		controller: 'MainCtrl'
+		controller: 'MainCtrl',
+		abstract: true
 	})
 	.state('main.dashboard', {
-		templateUrl: 'views/dashboard.html'
+		templateUrl: 'views/dashboard.html',
+		url: ''
 	})
 	.state('main.activityDetails', {
 		templateUrl: 'views/activitydetails.html',
@@ -39,11 +46,14 @@ angular
 		controller: 'CalendarCtrl'
 	});
 
-	$httpProvider.interceptors.push(function($q) {
+	$httpProvider.interceptors.push(function($q, $rootScope) {
 		return {
 			'request': function(config) {
 				if (config) {
-					config.headers['token'] = 'XXXMichalXXX';
+					if ($rootScope.user) {
+					//	config.headers['token'] = $rootScope.user.token;
+						config.headers['token'] = $rootScope.user.token;
+					}
 					if (config.data && config.data.calendar) {
 						config.data = angular.copy(config.data);
 						if (config.data.calendar.from) {
@@ -58,11 +68,19 @@ angular
 			},
 			'responseError' : function(response) {
 				window.alert(response.status + ' ' + response.statusText);
-				console.log(response);
 				return $q.reject(response);
 			}
 		};
 	});
+}).run(function ($rootScope, $location, $state, User) {
+
+	if (User.isAuthenticated()) {
+		$rootScope.user = User.getSession();
+		$location.path('/');
+	} else {
+		$location.path('/login');
+	}
+
 }).filter('doneFilter', function () {
 	return function (nodes, toggle) {
 		if (toggle) {
