@@ -15,4 +15,14 @@ angular.module('gtdApp')
 			$scope.contexts.push(data);
 		});
 	};
+	$scope.update = function (context) {
+		Context.update(context, function (data) {
+			context = data;
+		});
+	};
+	$scope.remove = function (context) {
+		Context.remove(context, function () {
+			$scope.contexts.splice($scope.contexts.indexOf(context), 1);
+		});
+	};
 });

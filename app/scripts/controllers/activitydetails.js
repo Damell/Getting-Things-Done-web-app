@@ -8,7 +8,7 @@
  * Controller of the gtdApp
  */
 angular.module('gtdApp')
-.controller('ActivityDetailsCtrl', function ($scope, Project, Task) {
+.controller('ActivityDetailsCtrl', function ($scope, $state, Project, Task) {
 
 	console.log('test');
 	$scope.cancelEdit = function () {
@@ -21,28 +21,34 @@ angular.module('gtdApp')
 	};
 	$scope.update = function (node) {
 		if (node.type === 'task') {
-			Task.update(node, function () {
-				$scope.tasks = Task.read();
+			Task.update(node, function (data) {
+				node = data;
+			}, function () {
+				$scope.cancelEdit();
 			});
 		} else {
-			Project.update(node, function () {
-				$scope.projects = Project.read();
+			Project.update(node, function (data) {
+				node = data;
+			}, function () {
+				$scope.cancelEdit();
 			});
 		}
 	};
 	$scope.remove = function (node) {
 		if (node.type === 'task') {
 			Task.remove({id: node.id}, function () {
-				$scope.tasks = Task.read();
+				$scope.tasks.splice($scope.tasks.indexOf(node), 1);
 				if (node.id === $scope.selected.id) {
 					$scope.selected = undefined;
+					$state.go('main.dashboard');
 				}
 			});
 		} else {
 			Project.remove({id: node.id}, function () {
-				$scope.projects = Project.read();
+				$scope.projects.splice($scope.projects.indexOf(node), 1);
 				if (node.id === $scope.selected.id) {
 					$scope.selected = undefined;
+					$state.go('main.dashboard');
 				}
 			});
 		}

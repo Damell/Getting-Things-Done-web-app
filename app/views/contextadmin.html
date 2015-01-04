@@ -30,11 +30,11 @@
 			<td>
 				{{ context.id }}
 			</td>
-			<td ng-click="context.$update()">
-				<i class="fa fa-edit"></i>
+			<td>
+				<i class="fa fa-edit" ng-click="update(context)"></i>
 			</td>
 			<td>
-				<i class="fa fa-trash"></i>
+				<i class="fa fa-trash" ng-click="remove(context)"></i>
 			</td>
 		</tr>
 		</tbody>

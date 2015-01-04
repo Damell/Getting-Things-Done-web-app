@@ -32,8 +32,10 @@ angular.module('gtdApp')
 		'update' : {
 			'method' : 'PUT',
 			'transformResponse' : function (data) {
-				data = JSON.parse(data);
-				data.type = 'project';
+				if (data) {
+					data = JSON.parse(data);
+					data.type = 'project';
+				}
 				return data;
 			}
 		},
