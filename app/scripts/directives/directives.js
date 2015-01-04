@@ -14,7 +14,7 @@ angular.module('gtdApp')
 			// view -> model
 			elm.bind('blur', function() {
 				scope.$apply(function() {
-					ctrl.$setViewValue(elm.html());
+					ctrl.$setViewValue(elm.html().replace(/(<([^>]+)>)/ig,'').replace(/&nbsp;/ig,''));
 				});
 			});
 
