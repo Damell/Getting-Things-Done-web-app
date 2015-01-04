@@ -3,7 +3,7 @@
 		<div class="col-xs-2 logo">
 			<h3>GTD</h3>
 		</div>
-		<div class="col-xs-10 brcrumb">
+		<div class="col-xs-8 brcrumb">
 			<ol class="breadcrumb">
 				<li ng-repeat="node in getBreadcrumb(selected)">
 				<a ng-href="#" ng-click="select(node)">
@@ -12,7 +12,7 @@
 				</li>
 			</ol>
 		</div>
-		<div class="pull-right logout">
+		<div class="col-xs-2 pull-right logout">
 			<a ng-href="#/login" ng-click="logout()">Log out</a>
 		</div>
 	</div>
@@ -60,11 +60,11 @@
 				</div>
 				<div class="modal-body">
 					<div class="chooser" ng-if="!create.type">
-						<div class="option" ng-click="create.type='project'">
+						<div class="option" ng-click="create.type='project'; create.data.state=states.project[0]">
 							<span class="fa fa-2x fa-folder"></span>
 							Create project
 						</div>
-						<div class="option" ng-click="create.type='task'">
+						<div class="option" ng-click="create.type='task'; create.data.state=states.task[0]">
 							<span class="fa fa-2x fa-check"></span>
 							Create task
 						</div>
