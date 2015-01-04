@@ -20,6 +20,9 @@
 				<td>
 					Delete
 				</td>
+				<td>
+					Search filter
+				</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,6 +38,10 @@
 			</td>
 			<td>
 				<i class="fa fa-trash" ng-click="remove(context)"></i>
+			</td>
+			<td>
+				<input type="checkbox" ng-model="context.filter">
+				<i class="fa fa-search"></i>
 			</td>
 		</tr>
 		</tbody>

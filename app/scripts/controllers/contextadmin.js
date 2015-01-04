@@ -24,4 +24,7 @@ angular.module('gtdApp')
 			$scope.contexts.splice($scope.contexts.indexOf(context), 1);
 		});
 	};
+	$scope.filter = function (context) {
+		context.filter = true;
+	};
 });

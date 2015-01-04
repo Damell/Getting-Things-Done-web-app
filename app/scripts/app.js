@@ -117,4 +117,24 @@ angular
 		});
 		return out.slice(0, -1);
 	};
+}).filter('contextFilter', function () {
+	return function (nodes, contexts) {
+		var arr = [];
+		var flag = true;
+		var contextFilterActive = false;
+		console.log(contexts);
+		angular.forEach(nodes, function (node) {
+			flag = true;
+			angular.forEach(contexts, function (context) {
+				if (context.filter) {
+					contextFilterActive = true;
+					if (flag && node.context && node.context.id === context.id) {
+						arr.push(node);
+						flag = false;
+					}
+				}
+			});
+		});
+		return contextFilterActive ? arr : nodes;
+	};
 });

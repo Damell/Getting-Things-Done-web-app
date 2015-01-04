@@ -95,5 +95,14 @@ angular.module('gtdApp')
 		User.clearSession();
 		$rootScope.user = undefined;
 	};
+	$scope.isContextFilterActive = function () {
+		var active = false;
+		angular.forEach($scope.contexts, function (context) {
+			if (context.filter) {
+				active = true;
+			}
+		});
+		return active;
+	};
 });
 
