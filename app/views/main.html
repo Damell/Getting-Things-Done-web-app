@@ -12,6 +12,9 @@
 				</li>
 			</ol>
 		</div>
+		<div class="pull-right logout">
+			<a ng-href="#/login" ng-click="logout()">Log out</a>
+		</div>
 	</div>
 	<div class="row content">
 		<div class="col-xs-3 left-menu">
@@ -84,6 +87,11 @@
 							<div class="col-xs-12 col-sm-6">
 								<div class="attr">Parent project:</div>
 								<select ng-model="create.data.project" ng-options="project.title for project in projects track by project.id">
+								</select>
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<div class="attr">Context:</div>
+								<select ng-model="create.data.context" ng-options="context.title for context in contexts track by context.id">
 								</select>
 							</div>
 							<div class="col-xs-12 col-sm-6">

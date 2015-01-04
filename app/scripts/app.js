@@ -46,12 +46,11 @@ angular
 		controller: 'CalendarCtrl'
 	});
 
-	$httpProvider.interceptors.push(function($q, $rootScope) {
+	$httpProvider.interceptors.push(function($q, $rootScope, $location) {
 		return {
 			'request': function(config) {
 				if (config) {
 					if ($rootScope.user) {
-					//	config.headers['token'] = $rootScope.user.token;
 						config.headers['token'] = $rootScope.user.token;
 					}
 					if (config.data && config.data.calendar) {
@@ -67,6 +66,9 @@ angular
 				return config || $q.when(config);
 			},
 			'responseError' : function(response) {
+				if (response.status === 401) {
+					$location.path('/login');
+				}
 				window.alert(response.status + ' ' + response.statusText);
 				return $q.reject(response);
 			}

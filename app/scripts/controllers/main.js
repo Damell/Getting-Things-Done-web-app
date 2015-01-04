@@ -8,7 +8,7 @@
  * Controller of the gtdAppApp
  */
 angular.module('gtdApp')
-.controller('MainCtrl', function ($rootScope, $scope, $state, Project, Task, Context) {
+.controller('MainCtrl', function ($rootScope, $scope, $state, Project, Task, Context, User) {
 	$rootScope.doneFilter = false;
 	$scope.editable = false;
 	$scope.tasks = Task.read();
@@ -90,6 +90,10 @@ angular.module('gtdApp')
 		doneFilterToggle: function () {
 			$rootScope.doneFilter = !$rootScope.doneFilter;
 		}
+	};
+	$scope.logout = function () {
+		User.clearSession();
+		$rootScope.user = undefined;
 	};
 });
 
