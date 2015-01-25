@@ -29,6 +29,9 @@ angular.module('gtdApp')
 		'clearSession' : function () {
 			window.sessionStorage.removeItem('username');
 			window.sessionStorage.removeItem('token');
+		},
+		'signup' : function (data) {
+			return $http.post('api/v1/persons', data);
 		}
 	};
 	/**	$resource('api/v1/authenticate/:username', {'username': '@username'}, {

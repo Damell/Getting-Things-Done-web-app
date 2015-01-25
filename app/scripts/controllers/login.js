@@ -17,4 +17,12 @@ angular.module('gtdApp')
 			$state.go('main.dashboard');
 		});
 	};
+	$scope.signup = function (name, surname, username, password) {
+		User.signup({name: name, surname: surname, username: username, password: password}).success(function(data) {
+			console.log(data);
+			$rootScope.user = data;
+			User.setSession(data);
+			$state.go('main.dashboard');
+		});
+	};
 });

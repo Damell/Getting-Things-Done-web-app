@@ -1,2 +1,3 @@
-<p>This is the calendar view.</p>
-<p>To be done</p>
+<button class="btn btn-default" ng-click="setView('month')">Month View</button>
+<button class="btn btn-default" ng-click="setView('agendaWeek')">Agenda view</button>
+<div id="calendar" ui-calendar="calendarOptions" class="col-md-12 calendar" ng-model="eventSources" calendar="myCalendar"></div> 

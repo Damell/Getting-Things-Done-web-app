@@ -12,7 +12,8 @@ angular
 .module('gtdApp', [
 	'ngResource',
 	'ui.bootstrap',
-	'ui.router'
+	'ui.router',
+	'ui.calendar'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 	$urlRouterProvider.otherwise('/');
 	//
@@ -122,7 +123,6 @@ angular
 		var arr = [];
 		var flag = true;
 		var contextFilterActive = false;
-		console.log(contexts);
 		angular.forEach(nodes, function (node) {
 			flag = true;
 			angular.forEach(contexts, function (context) {
