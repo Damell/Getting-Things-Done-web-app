@@ -18,8 +18,9 @@ angular.module('gtdApp')
 		});
 	};
 	$scope.signup = function (name, surname, username, password) {
-		User.signup({name: name, surname: surname, username: username, password: password}).success(function(data) {
+		User.signup({jmeno: name, prijmeni: surname, login: username, password: password}).success(function(data) {
 			console.log(data);
+			data.token = data.tokens[0].securityToken;
 			$rootScope.user = data;
 			User.setSession(data);
 			$state.go('main.dashboard');

@@ -10,7 +10,6 @@
 angular.module('gtdApp')
 .controller('ActivityDetailsCtrl', function ($scope, $state, Project, Task) {
 
-	console.log('test');
 	$scope.cancelEdit = function () {
 		angular.forEach($scope.selectedBackup, function (value, key) {
 			$scope.selected[key] = value;
