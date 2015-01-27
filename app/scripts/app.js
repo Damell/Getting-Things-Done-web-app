@@ -52,7 +52,7 @@ angular
 			'request': function(config) {
 				if (config) {
 					if ($rootScope.user) {
-						config.headers['token'] = $rootScope.user.token;
+						config.headers.token = $rootScope.user.token;
 					}
 					if (config.data && config.data.calendar) {
 						config.data = angular.copy(config.data);

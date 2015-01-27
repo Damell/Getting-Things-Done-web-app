@@ -6,13 +6,13 @@ describe('Service: context', function () {
   beforeEach(module('gtdApp'));
 
   // instantiate service
-  var context;
-  beforeEach(inject(function (_context_) {
-    context = _context_;
+  var Context;
+  beforeEach(inject(function (_Context_) {
+    Context = _Context_;
   }));
 
   it('should do something', function () {
-    expect(!!context).toBe(true);
+    expect(!!Context).to.equal(true);
   });
 
 });
