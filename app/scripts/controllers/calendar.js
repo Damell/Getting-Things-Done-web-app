@@ -20,27 +20,26 @@ angular.module('gtdApp')
 		uiCalendarConfig.calendars.myCalendar.fullCalendar( 'changeView', viewName );
 	};
 	$scope.events = [];
-	$scope.renderCalender = function () {
+	$scope.renderCalendar = function () {
 		if (uiCalendarConfig.calendars.myCalendar) {
 			uiCalendarConfig.calendars.myCalendar.fullCalendar('removeEvents');
 			uiCalendarConfig.calendars.myCalendar.fullCalendar('addEventSource', $scope.events);
 		}
 	};
 	if ($scope.tasks && $scope.tasks.length > 0) {
-		$scope.tasks.$promise.then(function (tasks) {
-			$scope.events.splice(0, $scope.events.length);
-			tasks.data.filter(function (el) {
-				return el.state.code === 'K';
-			}).forEach(function (el) {
-				$scope.events.push({
-					'title': el.title,
-					'start': el.calendar.from,
-					'end': el.calendar.to,
-					'allDay': false,
-					'original': el
-				});
+		$scope.events.splice(0, $scope.events.length);
+		$scope.tasks.filter(function (el) {
+			return el.state.code === 'K';
+		}).forEach(function (el) {
+			$scope.events.push({
+				'title': el.title,
+				'start': el.calendar.from,
+				'end': el.calendar.to,
+				'allDay': false,
+				'original': el
 			});
 		});
+		$scope.renderCalendar();
 	}
 	$scope.eventSources = [$scope.events];
 });
