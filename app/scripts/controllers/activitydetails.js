@@ -21,13 +21,13 @@ angular.module('gtdApp')
 	$scope.update = function (node) {
 		if (node.type === 'task') {
 			Task.update(node, function (data) {
-				node = data;
+				$scope.selected = data;
 			}, function () {
 				$scope.cancelEdit();
 			});
 		} else {
 			Project.update(node, function (data) {
-				node = data;
+				$scope.selected = data;
 			}, function () {
 				$scope.cancelEdit();
 			});
