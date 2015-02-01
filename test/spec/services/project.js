@@ -2,9 +2,6 @@
 
 describe('Service: Project', function () {
 
-	beforeEach(function () {
-		var TEST = true;
-	});
 	// load the service's module
 	beforeEach(module('gtdApp'));
 

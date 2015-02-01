@@ -1,5 +1,6 @@
 <html>
 <meta charset="utf-8">
+
 <h1 id="u-ivatelsk-p-ru-ka-gtd-aplikace">Uživatelská příručka <a href="/index.html">GTD aplikace</a></h1>
 <h2 id="k-emu-slou-gtd">K čemu slouží GTD</h2>
 <p>GTD je zkratka pro anglický výraz Getting Things Done, v překladu Dokončování věcí. Pomůže Vám udržet si přehled o všech činnostech, které potřebujete vykonat a tak zvýší Vaši efektivitu v plnění všech úkolů, ať už pracovních či volnočasových.</p>
@@ -7,15 +8,64 @@
 <p>Při prvním vstupu na úvodní stránku se nám objeví přihlašovací formulář nalevo a registrační napravo. Při registraci není nutný další krok ke schválení účtu a proto jsme ihned po případné registraci přesměrování na úvodní stránku aplikace.</p>
 <p>Potřeba je při registraci vyplnit pouze čtyří údaje. Pro heslo je pouze jedno pole a tak buďte opatrní s překlepy při jeho vyplňování :).</p>
 <p><img src="images/login.png" alt="Přihlašovací obrazovka"></p>
-<h2 id="vodn-obrazovka">Úvodní obrazovka</h2>
+<h2 id="-vodn-obrazovka">Úvodní obrazovka</h2>
 <p>Po přihlášení Vás přivítá úvodní obrazovka aplikace s krátkým popisem k účelu aplikace. Nalevo je umístěno navigační menu, které podrobněji projdeme v dalších sekcích příručky. Vpravo nahoře ještě nalezneme odkaz, který nás z aplikace odhlásí a tak zamezí přístupu do aplikace jiným uživatelům stejného počítače.</p>
 <p><img src="images/dashboard.png" alt="Obrazovka aplikace"></p>
 <h2 id="projekty-a-koly">Projekty a úkoly</h2>
+<p>Těžiště aplikace spočívá v rozdělení všech akcí na projekty a úkoly. Hlavní rozdíl mezi nimi je v konečnosti úkolu, ten tedy už nemůže mít další podúkoly.</p>
 <h3 id="projekt">Projekt</h3>
-<h3 id="projekt">Navigace</h3>
+<p>Projekt má následující atributy:</p>
+<ul>
+<li>název</li>
+<li>popis</li>
+<li>rodičovský projekt (volitelné)</li>
+<li>kontext - umožňuje akce seskupovat do logických celků, dále viz. Kontexty</li>
+<li>poznámky (volitelné)</li>
+<li>stav - u projektu může být pouze <em>aktivní</em> nebo <em>dokončený</em></li>
+</ul>
+<p><img src="images/project.png" alt="Projekt"></p>
 <h3 id="-kol">Úkol</h3>
-<h3 id="tvorba-nov-ch">Tvorba nových</h3>
-<h3 id="editace">Editace</h3>
+<p>Úkol má následující atributy:</p>
+<ul>
+<li>název</li>
+<li>popis</li>
+<li>rodičovský projekt (volitelné)</li>
+<li>kontext - umožňuje akce seskupovat do logických celků, dále viz. Kontexty</li>
+<li>poznámky (volitelné)</li>
+<li>stav - u projektu může být pouze <em>vytvořený</em>, <em>aktivní</em>, <em>v kalendáři</em> nebo <em>hotový</em>. V případě stavu <em>v kalendáři</em> se nastavuje i časový rozsah od a do</li>
+</ul>
+<p><img src="images/task.png" alt="Úkol"></p>
+<h3 id="navigace">Navigace</h3>
+<p>Panel na levé straně slouží k hlavní navigaci v celé aplikaci.</p>
+<p>Na horní straně najdeme dvě tlačítka pro přepnutí pohledů. První zleva nás přepne do pohledu pro správu kontextů, dále viz. Kontexty. Druhé tlačítko nás přepne do pohledu Kalendář, dále viz. Kalendář.</p>
+<p>Dále následuje tlačítko pro filtrování úkolů a projektů, jeho zaškrtnutím se nám zobrazí pouze nedokončené úkoly a projekty. Je důležité být si vědom toho, že pokud projekt je projekt ve stavu <em>dokončený</em>, nezobrazí se nám se zapnutým filtrem ani žádný aktivní úkol nebo projekt, který ho má nastavený za rodiče.</p>
+<p>Následuje hlavní stromová struktura projektů a úkolů. Pro zjednodušení navigace jsou používány různé ikony:</p>
+<ul>
+<li>ikona složky - označuje projekt<ul>
+<li>vyplněná složka - projekt obsahuje další projekty nebo úkoly. Dvojklikem si projekt můžeme rozbalit</li>
+<li>zavřená složka - dokončený projekt</li>
+</ul>
+</li>
+<li>ikona čtverečku - označuje úkol<ul>
+<li>zaškrtutý čtvereček - hototý úkol</li>
+</ul>
+</li>
+</ul>
+<p>Na spodním okraji je tlačítko s ikonou plus, které slouží k vytváření nových úkolů a projektů.</p>
+<p><img src="images/navigation.png" alt="Navigace"></p>
+<h3 id="detail-kolu-projektu">Detail úkolu/projektu</h3>
+<p>Po kliknutí na libovolný projekt nebo úkol se nám v hlavní části obrazovky zobrazí podrobné informace o něm. Za povšimnutí stojí tři tlačítka v horní části. První nám umožní úkol/projekt editovat, druhé rychle označit za splněný a třetí smazat.</p>
+<p><img src="images/detail.png" alt="Deteailní pohled"></p>
 <h2 id="kontexty">Kontexty</h2>
+<p>Kontexty umožňují přidat k úkolům a projektům značky, pro jednodušší navigaci a jejich zařazení. Jedna značka můžu být přiřazena k libovolnému množství úkolů nebo projektů. Na obrazovce kontextů můžeme nové kontexty vytvářet, editovat existující i mazat. Kontexty zde můžeme také aktivovat jako filtr (u ikony lupy na pravé straně) a v takovém případě se nám v navigačním stromě zobrazí jen úkoly a projekty s takovým kontextem.</p>
+<p><img src="images/kontext.png" alt="Kontexty"></p>
 <h2 id="kalend-">Kalendář</h2>
+<p>Kalendář slouží k pohledu na úkoly, které mají stav v kalendáři. Můžeme takto jednoduše vidět, které úkoly je nezbytné splnit v určitém čase a až poté se věnovat zbývajícím. Můžeme se přepínat mezi přehledovým pohledem na celý měsíc a pohledem agenda, který zobrazí úkoly hodinu po hodině v rámci jednoho týdne.</p>
+<p>
+<img src="images/calendar.png" alt="Kalendář">
+</p>
+<p>
+<img src="images/agenda.png" alt="Agenda">
+</p>
+
 </html>

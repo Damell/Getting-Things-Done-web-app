@@ -74,4 +74,8 @@
 		<select ng-if="editable" ng-model="selected.context" ng-options="context.title for context in contexts track by context.id">
 		</select>
 	</div>
+	<div class="col-xs-12 col-sm-6">
+		<div class="attr">Notes:</div>
+		<div class="value" contenteditable="{{editable?'true':'false'}}" ng-model="selected.notes[0]"></div>
+	</div>
 </div>
