@@ -9,7 +9,7 @@
     "bootswatch-scss": "~3.2.0",
     "angular-resource": "~1.2.0",
     "angular-ui-router": "~0.2.11",
-    "fullcalendar": "~2.1.0",
+    "fullcalendar": "2.1.1",
     "moment": "~2.9.0",
     "angular-ui-calendar": "latest",
     "angular-bootstrap": "~0.11.2",
@@ -32,5 +32,9 @@
       ]
     }
   },
-  "appPath": "app"
+  "appPath": "app",
+  "resolutions": {
+    "fullcalendar": "2.1.1",
+    "jquery": ">=1.7.1"
+  }
 }
